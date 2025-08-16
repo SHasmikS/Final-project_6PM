@@ -1,0 +1,15 @@
+export const productPageLocators = {
+  littleKidLabel: 'label:has-text("Little Kid")',
+  bigKidLabel: 'label[for="radio-big-kids-9613082"]',
+  addToCartButton: '#add-to-cart-button',
+  sizeButton: 'label:has-text("11")',
+  cartModalTitle: 'p#modalDescription:has-text("Added to Bag")',
+  closeButton: 'button[aria-label="Close"].lumon\\:hidden',
+  removeItemButton: 'button[aria-label="Remove Item"]',
+  productImage: 'div.isolate picture img',
+  productTitle: 'div._C-z a span.cD-z',
+  quantitySelect: 'select[id^="quantity-"]',
+  subtotalPrice: 'div.oE-z span:not(:has-text("Bag Subtotal"))', 
+  viewBagLink: 'a[href="/cart"]',
+  checkoutButton: 'button[type="submit"]:has-text("Proceed to Checkout")',
+};
