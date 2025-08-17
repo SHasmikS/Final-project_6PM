@@ -1,4 +1,4 @@
-import { Locator, Page } from '@playwright/test';
+import { Locator, Page, expect } from '@playwright/test';
 import { productPageLocators } from './productPageLocators';
 import { BasePage } from "../basePage";
 
@@ -16,6 +16,9 @@ export class ProductPage extends BasePage {
   readonly subtotalPrice: Locator;
   readonly viewBagLink: Locator;
   readonly checkoutButton: Locator;
+  readonly saveToFavoritesButton: Locator;
+  readonly signInToFavoritesModal: Locator;
+  readonly signInToFavoritesCloseButton: Locator;
 
   constructor(page: Page) {
     super(page);
@@ -32,6 +35,9 @@ export class ProductPage extends BasePage {
     this.subtotalPrice = page.locator(productPageLocators.subtotalPrice);
     this.viewBagLink = page.locator(productPageLocators.viewBagLink);
     this.checkoutButton = page.locator(productPageLocators.checkoutButton);
+    this.saveToFavoritesButton = page.locator(productPageLocators.saveToFavoritesButton);
+    this.signInToFavoritesModal = page.locator(productPageLocators.signInToFavoritesModal);
+    this.signInToFavoritesCloseButton = page.locator(productPageLocators.signInToFavoritesCloseButton);
   }
 
   async selectLittleKid() {
@@ -73,4 +79,20 @@ export class ProductPage extends BasePage {
   async proceedToCheckout() {
     await this.checkoutButton.click();
   }
+
+  async saveToFavorites() {
+    await this.saveToFavoritesButton.click();
+  }
+
+  async waitForSignInToFavoritesModal() {
+    await expect(this.signInToFavoritesModal).toBeVisible();
+  }
+
+  async closeSignInToFavoritesModal() {
+    await this.signInToFavoritesCloseButton.click();
+  }
+  async expectSignInToFavoritesModalHidden() {
+    await expect(this.page.locator(productPageLocators.signInToFavoritesModal)).toBeHidden();
+  }
+
 }

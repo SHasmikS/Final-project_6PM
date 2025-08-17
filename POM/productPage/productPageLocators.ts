@@ -12,4 +12,7 @@ export const productPageLocators = {
   subtotalPrice: 'div.oE-z span:not(:has-text("Bag Subtotal"))', 
   viewBagLink: 'a[href="/cart"]',
   checkoutButton: 'button[type="submit"]:has-text("Proceed to Checkout")',
+  saveToFavoritesButton: 'button:has-text("Save to Favorites")',
+  signInToFavoritesModal: '.ReactModal__Content[role="dialog"]',
+  signInToFavoritesCloseButton: 'button[aria-label="Close"]',
 };

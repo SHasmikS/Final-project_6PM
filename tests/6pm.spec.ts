@@ -78,4 +78,23 @@ test.describe('Home Page Navigation', () => {
     await homepage.search(searchKeyword);
     await searchResultsAssertions.expectPageHeaderToContainSearchKeyword(searchKeyword);
   });
+
+  test('User can add items to favorites', async ({ page }) => {
+    const homepage = new homePage(page);
+    const searchResultsPage = new SearchResultsPage(page);
+    const productPage = new ProductPage(page);
+    const searchResultsAssertions = new SearchResultsAssertions(page);
+
+    const searchKeyword = 'crocs kids';
+    await homepage.doSearch(searchKeyword);
+    await searchResultsAssertions.expectPageHeaderToContainSearchKeyword(searchKeyword);
+    
+    await searchResultsPage.clickProductCard();
+    
+    await productPage.saveToFavorites();
+    await productPage.waitForSignInToFavoritesModal();
+    await productPage.closeSignInToFavoritesModal();
+    await productPage.expectSignInToFavoritesModalHidden();
+  
+  });
 });
