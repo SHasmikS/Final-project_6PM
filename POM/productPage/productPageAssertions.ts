@@ -20,8 +20,7 @@ export class ProductPageAssertions {
     await expect(this.page).toHaveURL(/\/cart/);
   }
 
-  // Optional: after adding to cart, confirm success message or modal
-  async expectSuccessNotification(message: string) {
-    await expect(this.page.locator(`text=${message}`)).toBeVisible();
+  async expectCartModalTitleVisible() {
+    await expect(this.page.locator(productPageLocators.cartModalTitle)).toBeVisible();
   }
 }

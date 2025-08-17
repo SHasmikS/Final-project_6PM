@@ -25,6 +25,4 @@ export class HomePageAssertions {
     const results = this.page.locator(homePageLocators.itemName);
     await expect(results).toContainText(text);
   }
-
 }
-

@@ -27,7 +27,6 @@ export class homePage extends BasePage {
     await this.searchField.fill(searchKey);
     await this.link.click();
   }
-
   async search (searchKey:string) {
     await this.searchField.fill(searchKey);
     await this.searchIcon.click();
@@ -48,4 +47,5 @@ async clickCrocsKidsLink() {
   }
 
 }
+ 
  

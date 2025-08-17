@@ -10,6 +10,7 @@ export class SearchResultsPage {
   readonly sortSelect: Locator;
   readonly productCard: Locator;
   readonly invalidItemHeader: Locator;
+  expectInvalidItemHeaderToBeVisible: any;
   
   constructor(page: Page) {
     this.page = page;
@@ -23,7 +24,14 @@ export class SearchResultsPage {
   }
 
   async getPageHeaderText() {
+    await this.pageHeader.waitFor({ state: 'visible', timeout: 10000 });
     return await this.pageHeader.textContent();
+  }
+
+  async getPageHeaderTextLowerCase() {
+    await this.pageHeader.waitFor({ state: 'visible', timeout: 10000 });
+    const text = await this.pageHeader.textContent();
+    return text?.toLowerCase() || '';
   }
 
   async getInvalidItemPageHeaderText () {
@@ -42,6 +50,10 @@ export class SearchResultsPage {
     return await this.selectionsText.isVisible();
   }
 }
+
+
+
+
 
 
 

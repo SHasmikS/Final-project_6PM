@@ -42,9 +42,9 @@ export class ProductPage extends BasePage {
     await this.bigKidLabel.click();
   }
 
-  async selectSize(sizeText: string = "11") {
-    await this.page.locator(`label:has-text("${sizeText}")`).click();
-  }
+  async selectSize(size: string) {
+  await this.sizeButton.click();
+}
 
   async clickAddToCart() {
     await this.addToCartButton.click();

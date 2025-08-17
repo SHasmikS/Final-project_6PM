@@ -23,4 +23,14 @@ export class SearchResultsAssertions {
   async expectSortByLabelToHaveText(expectedText: string) {
     await expect(this.page.locator(searchResults.sortBy)).toHaveText(expectedText);
   }
+
+  async expectInvalidItemHeaderToBeVisible() {
+    await expect(this.page.locator(searchResults.invalidItemHeader)).toBeVisible();
+  }
+
+  async expectPageHeaderToContainSearchKeyword(searchKeyword: string) {
+    const pageHeader = this.page.locator(searchResults.pageHeader);
+    const headerText = await pageHeader.textContent();
+    expect(headerText?.toLowerCase()).toContain(searchKeyword.toLowerCase());
+  }
 }

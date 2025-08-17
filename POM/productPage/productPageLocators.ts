@@ -2,7 +2,7 @@ export const productPageLocators = {
   littleKidLabel: 'label:has-text("Little Kid")',
   bigKidLabel: 'label[for="radio-big-kids-9613082"]',
   addToCartButton: '#add-to-cart-button',
-  sizeButton: 'label:has-text("11")',
+  sizeButton: 'label:has-text("4")',
   cartModalTitle: 'p#modalDescription:has-text("Added to Bag")',
   closeButton: 'button[aria-label="Close"].lumon\\:hidden',
   removeItemButton: 'button[aria-label="Remove Item"]',
