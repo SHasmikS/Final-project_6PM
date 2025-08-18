@@ -1,13 +1,15 @@
 export const productPageLocators = {
-  littleKidLabel: 'label:has-text("Little Kid")',
+  littleKidLabel: 'label[for="radio-little-kids-9949064"]',
   bigKidLabel: 'label[for="radio-big-kids-9613082"]',
+  bigKidLabel2: 'label[for="radio-111701-9949064"]',
   addToCartButton: '#add-to-cart-button',
   sizeButton: 'label:has-text("4")',
+  littleKidSizeButton: 'label[for="radio-111400-9949064"]',
   cartModalTitle: 'p#modalDescription:has-text("Added to Bag")',
   closeButton: 'button[aria-label="Close"].lumon\\:hidden',
   removeItemButton: 'button[aria-label="Remove Item"]',
   productImage: 'div.isolate picture img',
-  productTitle: 'div._C-z a span.cD-z',
+  productTitle: 'span.lA-z',
   quantitySelect: 'select[id^="quantity-"]',
   subtotalPrice: 'div.oE-z span:not(:has-text("Bag Subtotal"))', 
   viewBagLink: 'a[href="/cart"]',
@@ -15,4 +17,10 @@ export const productPageLocators = {
   saveToFavoritesButton: 'button:has-text("Save to Favorites")',
   signInToFavoritesModal: '.ReactModal__Content[role="dialog"]',
   signInToFavoritesCloseButton: 'button[aria-label="Close"]',
+  cartEmptyMessage: 'p.xj-z',
+  sizeLable: 'span:has-text("XS")',
+  subtotalValue: 'p.oM-z span',
+  firstItemPrice: 'em.Qj-z.Rj-z',
+  secondItemPrice: 'em.Qj-z.Rj-z',
+  
 };

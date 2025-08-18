@@ -10,7 +10,11 @@ export class SearchResultsPage {
   readonly sortSelect: Locator;
   readonly productCard: Locator;
   readonly invalidItemHeader: Locator;
-  expectInvalidItemHeaderToBeVisible: any;
+  readonly productTitle: Locator;
+  readonly productPrice: Locator;
+  readonly productCard2: Locator;
+  readonly 
+  
   
   constructor(page: Page) {
     this.page = page;
@@ -20,7 +24,9 @@ export class SearchResultsPage {
     this.sortSelect = page.locator(searchResults.sortSelect);
     this.productCard = page.locator(searchResults.productCard);
     this.invalidItemHeader = page.locator(searchResults.invalidItemHeader);
-  
+    this.productTitle = page.locator(searchResults.productTitle);
+    this.productPrice = page.locator(searchResults.productPrice);
+    this.productCard2 = page.locator(searchResults.productCard2);
   }
 
   async getPageHeaderText() {
@@ -46,8 +52,23 @@ export class SearchResultsPage {
     await this.productCard.click();
   }
 
+  async clickProductCard2() {
+    await this.productCard2.click();
+  }
+
+
   async isSelectionsTextVisible() {
     return await this.selectionsText.isVisible();
+  }
+
+  async getProductTitle() {
+    await this.productTitle.waitFor({ state: 'visible', timeout: 10000 });
+    return await this.productTitle.textContent();
+  }
+
+  async getProductPrice() {
+    await this.productPrice.waitFor({ state: 'visible', timeout: 10000 });
+    return await this.productPrice.textContent();
   }
 }
 

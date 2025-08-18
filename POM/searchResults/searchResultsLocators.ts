@@ -4,5 +4,8 @@ export const searchResults = {
     selectionsText: 'h2.Yt-z',
     sortBy: 'label[for="searchSort"]',
     sortSelect: '#searchSort',
-    productCard: 'a[data-style-id="6456151"]'
+    productCard: 'a[data-style-id="6456151"]',
+    productCard2: 'a[data-style-id="6403535"]',
+    productTitle: 'a[data-style-id="6456151"] span[data-testid="product-title"]',
+    productPrice: 'a[data-style-id="6456151"] span[data-testid="product-price"]'
     };

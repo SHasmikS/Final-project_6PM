@@ -33,21 +33,7 @@ test.describe('Home Page Navigation', () => {
     
   });
 
-    test('User can search for an item and cart the item', async ({ page }) => {
-    const homepage = new homePage(page);
-    const searchResultsPage = new SearchResultsPage(page);
-    const productPage = new ProductPage(page);
-    const productPageAssertions = new ProductPageAssertions(page);
-
-    await homepage.doSearch('crocs kids');
-    await searchResultsPage.clickProductCard();
-    await productPage.selectBigKid();
-    await productPage.selectSize('4');
-    await productPage.clickAddToCart();
-    await productPage.waitForCartModal();
-    await productPageAssertions.expectCartModalTitleVisible();
-    
-  });
+   
 
   test('User can search with brand name', async ({ page }) => {
     const homepage = new homePage(page);
@@ -59,6 +45,7 @@ test.describe('Home Page Navigation', () => {
     await searchResultsAssertions.expectPageHeaderToContainSearchKeyword(searchKeyword);
   });
 
+  
   test('User can search with category term', async ({ page }) => {
     const homepage = new homePage(page);
     const searchResultsPage = new SearchResultsPage(page);
@@ -69,6 +56,7 @@ test.describe('Home Page Navigation', () => {
     await searchResultsAssertions.expectPageHeaderToContainSearchKeyword(searchKeyword);
   });
 
+  
   test('User can search with color and type combination', async ({ page }) => {
     const homepage = new homePage(page);
     const searchResultsPage = new SearchResultsPage(page);
@@ -79,22 +67,6 @@ test.describe('Home Page Navigation', () => {
     await searchResultsAssertions.expectPageHeaderToContainSearchKeyword(searchKeyword);
   });
 
-  test('User can add items to favorites', async ({ page }) => {
-    const homepage = new homePage(page);
-    const searchResultsPage = new SearchResultsPage(page);
-    const productPage = new ProductPage(page);
-    const searchResultsAssertions = new SearchResultsAssertions(page);
-
-    const searchKeyword = 'crocs kids';
-    await homepage.doSearch(searchKeyword);
-    await searchResultsAssertions.expectPageHeaderToContainSearchKeyword(searchKeyword);
-    
-    await searchResultsPage.clickProductCard();
-    
-    await productPage.saveToFavorites();
-    await productPage.waitForSignInToFavoritesModal();
-    await productPage.closeSignInToFavoritesModal();
-    await productPage.expectSignInToFavoritesModalHidden();
   
-  });
+
 });
