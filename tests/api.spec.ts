@@ -2,38 +2,40 @@ import { test, expect } from '@playwright/test';
 
 
 
-test.describe('6pm.com API smoke checks', () => {
-  test('GET homepage returns 200 and HTML content-type', async ({ request }) => {
-    const response = await request.get('https://www.6pm.com/');
-    expect(response.ok()).toBeTruthy();
+test.describe("Cart API checks", () => {
+  test("GET getCartItemsCount returns count", async ({ request }) => {
+    const response = await request.get("https://amazon.6pm.com/mobileapi/v1/getCartItemsCount");
     expect(response.status()).toBe(200);
-    const contentType = response.headers()['content-type'] || '';
-    expect(contentType.toLowerCase()).toContain('text/html');
+    const body = await response.json();
+    expect(body).toHaveProperty("count");
+    expect(typeof body.count).toBe("number");
   });
-  
-  test('HEAD homepage returns 200', async ({ request }) => {
-    const response = await request.head('https://www.6pm.com/');
+
+
+   test("cart count should be a non-negative integer", async ({ request }) => {
+    const response = await request.get("https://amazon.6pm.com/mobileapi/v1/getCartItemsCount");
+
     expect(response.status()).toBe(200);
+
+    const body = await response.json();
+    expect(Object.keys(body)).toContain("count");
+    expect(Number.isInteger(body.count)).toBeTruthy();
+    expect(body.count).toBeGreaterThanOrEqual(0);
   });
 
   
+  test("Cart items quantity are non-negative integers", async ({ request }) => {
+    const endpoint = "https://amazon.6pm.com/mobileapi/v1/cart";
+    const response = await request.get(endpoint);
+    const body = await response.json();
 
-  test('Search page for query returns HTML', async ({ request }) => {
-    const response = await request.get('https://www.6pm.com/search?q=crocs', { headers: { 'Accept': 'text/html' } });
-    expect(response.status()).toBe(200);
-    const contentType = response.headers()['content-type'] || '';
-    expect(contentType.toLowerCase()).toContain('text/html');
-    const body = await response.text();
-    expect(body.toLowerCase()).toContain('<html');
-  });
+    expect(Array.isArray(body.items)).toBeTruthy();
 
-  
-  test('favicon.ico is served as an image', async ({ request }) => {
-    const response = await request.get('https://www.6pm.com/favicon.ico');
-    expect(response.status()).toBe(200);
-    const contentType = response.headers()['content-type'] || '';
-    expect(contentType.toLowerCase()).toContain('image');
+    for (const item of body.items) {
+      expect(Number.isInteger(item.quantity)).toBeTruthy();
+      expect(item.quantity).toBeGreaterThanOrEqual(0);
+    }
   });
-    
-  });
+});
 
+ 

@@ -11,7 +11,7 @@ test.describe("Home Page Navigation", () => {
     await page.goto("https://www.6pm.com/", { waitUntil: "load" });
   });
 
-  test("User can search for an item and cart the item", async ({ page }) => {
+  test("User can search for an item and to cart ", async ({ page }) => {
     const homepage = new homePage(page);
     const searchResultsPage = new SearchResultsPage(page);
     const productPage = new ProductPage(page);
@@ -26,6 +26,7 @@ test.describe("Home Page Navigation", () => {
     await productPageAssertions.expectCartModalContainsProduct("Crocs Kids");
   });
 
+  
   test("User can add items to favorites", async ({ page }) => {
     const homepage = new homePage(page);
     const searchResultsPage = new SearchResultsPage(page);
@@ -47,7 +48,7 @@ test.describe("Home Page Navigation", () => {
     await productPageAssertions.expectSignInToFavoritesModalHidden();
   });
 
-  test("Remove item from cart", async ({ page }) => {
+  test("User can remove item from cart", async ({ page }) => {
     const homepage = new homePage(page);
     const searchResultsPage = new SearchResultsPage(page);
     const productPage = new ProductPage(page);
@@ -63,6 +64,7 @@ test.describe("Home Page Navigation", () => {
     await productPageAssertions.expectEmptyCartMessageVisible();
   });
 
+  
   test("User can add multiple items to the cart", async ({ page }) => {
     const homepage = new homePage(page);
     const searchResultsPage = new SearchResultsPage(page);
